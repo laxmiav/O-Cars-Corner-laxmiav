@@ -40,13 +40,13 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{path('homepage')}}">Accueil</a>
+                        <a class="nav-link {% if app.request.get('_route') starts with 'homepage' %}active{% endif %}" href="{{path('homepage')}}">Accueil</a>
                     </li>
                     <li class="nav-item">
-                         <a class="nav-link" href="{{path('car_add')}}"><i class="bi bi-car"></i> 🚓 Add a car</a>  
+                         <a class="nav-link {% if app.request.get('_route') starts with 'car_add' %}active{% endif %}" href="{{path('car_add')}}"><i class="bi bi-car"></i> 🚓 Add a car</a>  
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('brand_list') }}"><i class="bi bi-car"></i>Brands</a>
+                        <a class="nav-link {% if app.request.get('_route') starts with 'brand_' %}active{% endif %}" href="{{ path('brand_list') }}"> <i class="bi bi-car"></i>Brands</a>
                     </li>
                 </ul>
                     

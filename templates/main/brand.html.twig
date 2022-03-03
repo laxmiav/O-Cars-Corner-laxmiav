@@ -1,0 +1,29 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}O'cars{% endblock %}
+
+{% block body %}
+<div class="col-3">
+
+                <!-- Code du widget -->
+                <div id="widget">
+                
+              
+                <h1>
+                  {{ brandname.name }}
+              </h1>
+              <h2>
+                  Cars in this brand
+                                                      
+              </h2>
+                    {% for car in  brand %}
+                    <li>
+                        {{ car.Model }} ----- Release Year:{{ car.releaseYear|date('Y') }}
+                    </li>
+                {% endfor %}
+               
+                </div>
+
+            </div>
+      {% endblock %}

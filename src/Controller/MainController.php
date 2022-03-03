@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Car;
 use App\Repository\CarRepository;
+use App\Repository\BrandRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\brand;
@@ -108,8 +110,39 @@ class MainController extends AbstractController
      * @Route("/brand", name="brand_list")
      */
   
-    public function brandlist(): Response
+    public function brandlist(BrandRepository $brandRepository): Response
+
     {
-        return $this->render('main/brands.html.twig');
+        $brands = $brandRepository->findall();
+
+        return $this->render('main/brands.html.twig',[
+            'brands' => $brands,
+            
+        ]);
     }
+     /**
+     * @Route("/brand/{id}", name="brand_detail")
+     */
+  
+    public function showbrand(int $id, CarRepository $carRepository, BrandRepository $brandRepository ): Response
+
+    {
+        $brandname = $brandRepository->find($id);
+        $brand = $carRepository->findOneByIdWithCarBrands($id);
+       
+        //dd($brand);
+        if ( is_null($brand))
+        {
+            
+            throw $this->createNotFoundException('The brand does not exist');
+        }
+       
+        return $this->render('main/brand.html.twig',[
+            'brand' => $brand,
+            'brandname' =>  $brandname,
+            
+        ]);
+    }
+    
+
 }

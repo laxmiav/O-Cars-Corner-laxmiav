@@ -73,4 +73,21 @@ class CarRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findOneByIdWithCarBrands(int $id)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT  c, b
+            FROM App\Entity\Car c
+            JOIN c.brands b
+           
+            WHERE b.id = :id
+            '
+        )->setParameter('id', $id);
+
+        // return  Person object
+        return $query->getResult();
+
+    }
 }

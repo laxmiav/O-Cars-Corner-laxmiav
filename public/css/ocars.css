@@ -13,6 +13,16 @@ html {
   .h-md-300 {
       height: 300px;
   }
+  #widget {
+    border: 2px solid lightgray;
+    padding: 1em;
+    font-weight: bold;
+    text-align: center;
+    color:white;
+    margin-top:6em;
+    background-color:rgba(21, 87, 104, 0.603);
+    margin-left:6em;
+}
   
 
   

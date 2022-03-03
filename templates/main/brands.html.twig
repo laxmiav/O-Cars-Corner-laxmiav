@@ -14,29 +14,18 @@
                     <div class="col-8 p-4 d-flex flex-column position-static bg-light">
 
                        
-                            <dd class="col-sm-12">
+                           
+                                    
 
-                                <div class="container">
-                                    <h1>
-                                        {{ brand.name }}
-                                    </h1>
-
-                                    <h2>
-                                        Cars in this brand
-                                                                            
-                                    </h2>
-
+                                   
+                              {% for brand in brands %}
                                     <ul>
-                                        {% for car in cars %}
-                                            <li>
-                                                {{ car.Model }}{{ car.releaseYear }}
-                                            </li>
-                                        {% endfor %}
+                                    
+                                        <li class="nav-item">
+                        <a class="nav-link " href="{{ path('brand_detail',{id : brand.id}) }}"> {{brand.name }}</a>
+                                         </li>
                                     </ul>
-                                </div>
-                            </dd>
-
-                        </dl>
+                              {% endfor %}
 
                     </div>
 
@@ -46,5 +35,6 @@
 
         </div>
     </div>
+    
 {% endblock %}
 
