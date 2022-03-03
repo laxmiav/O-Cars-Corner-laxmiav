@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CarRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CarRepository::class)
@@ -19,6 +20,7 @@ class Car
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Please entre your Car's")
      */
     private $model;
 
