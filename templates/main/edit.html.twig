@@ -2,13 +2,13 @@
 
 {% block body %}
 <div class="container">
-    <h1>Add a car</h1>
+    <h1>Edit a car</h1>
 
     {{ form_start(form , {'attr': {'novalidate': 'novalidate'}}) }}
     {{ form_row(form.model) }}
     {{ form_row(form.releaseYear) }}
     {{ form_row(form.brands) }}
-    <button class="btn btn-primary">Add</button>
+    <button class="btn btn-primary">Edit</button>
 {{ form_end(form) }}
    
     
@@ -19,5 +19,5 @@
 
 
 {% block title %}
-Add a car
+Edit a car
 {% endblock %}

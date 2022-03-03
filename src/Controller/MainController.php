@@ -41,6 +41,7 @@ class MainController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($cars);
            
+            $this->addFlash('success', 'Thanks for registering your car with us');
             // dire à doctrine d'exécuter les requêtes
             $entityManager->flush();
             
@@ -56,11 +57,33 @@ class MainController extends AbstractController
        ]);
     }
     /**
-    * @Route("/car/edit", name="cars_edit")
+    * @Route("/car/edit/{id}", name="cars_edit")
     */
   
-    public function edit(Car $cars): Response
+    public function edit(Car $cars,Request $request, ManagerRegistry $doctrine): Response
     {
+
+        $form = $this->createForm(CarType::class, $cars);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $entityManager = $doctrine->getManager();
+
+            $this->addFlash('success', 'Your modification are well registered');
+            $entityManager->flush();
+
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('main/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+
+
+
+
         return $this->render('main/home.html.twig', [
             'cars' => $cars
         ]);
