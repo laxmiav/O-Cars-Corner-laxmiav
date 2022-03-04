@@ -22,7 +22,7 @@ class MainController extends AbstractController
   
     public function list(CarRepository $carRepository): Response
     {
-        $cars = $carRepository->findAll();
+        $cars = $carRepository->findBy([], ['releaseYear' => 'DESC', 'model' => 'ASC']);
 
         return $this->render('main/home.html.twig', [
             'cars' => $cars

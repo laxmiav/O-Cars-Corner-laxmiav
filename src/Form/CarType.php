@@ -20,7 +20,7 @@ class CarType extends AbstractType
                 'label' => 'Model',
             ])
             ->add('releaseYear', DateType::class, [
-                'label' => 'Release year',
+                'label' => 'Released year',
                 'widget' => 'single_text',
                 'input' => 'datetime_immutable',
                 'data' => new \DateTimeImmutable(),
