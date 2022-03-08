@@ -4,13 +4,16 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Car;
+use App\Entity\User;
 use App\Repository\CarRepository;
 use App\Repository\BrandRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Entity\brand;
 use App\Form\CarType;
 
@@ -28,9 +31,11 @@ class MainController extends AbstractController
             'cars' => $cars
         ]);
     }
+
+   
     /**
-     *  @return Response
-     * @Route("/car/add", name="car_add",methods={"GET", "POST"})
+     * @return Response
+     * @Route("/car/add", name="car_add", methods={"GET", "POST"})
      */
   
     public function add(Request $request, ManagerRegistry $doctrine): Response
@@ -39,6 +44,10 @@ class MainController extends AbstractController
         $form = $this->createForm(CarType::class, $cars);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
+
+            // On associe le user connecté à la question
+            $cars->setUser($this->getUser());
 
             $entityManager = $doctrine->getManager();
             $entityManager->persist($cars);
@@ -52,25 +61,29 @@ class MainController extends AbstractController
             return $this->redirectToRoute('homepage');
         }
 
-
-
         return $this->render('main/add.html.twig', [
             'form' => $form->createView(),
        ]);
     }
+
     /**
     * @Route("/car/edit/{id}", name="cars_edit")
     */
   
     public function edit(Car $cars,Request $request, ManagerRegistry $doctrine): Response
     {
-
+        $this->denyAccessUnlessGranted('CAR_EDIT', $cars);
         $form = $this->createForm(CarType::class, $cars);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
+
+
+                // On associe le user connecté à la question
+                $cars->setUser($this->getUser());
+
             $entityManager = $doctrine->getManager();
 
             $this->addFlash('success', 'Your modification are well registered');
@@ -95,7 +108,8 @@ class MainController extends AbstractController
      */
   
     public function delete(Car $cars, ManagerRegistry $doctrine): Response
-    {
+    {  
+        $this->denyAccessUnlessGranted('CAR_DELETE', $cars);
         $entityManager = $doctrine->getManager();
         $entityManager->remove( $cars);
         
@@ -141,6 +155,27 @@ class MainController extends AbstractController
             'brand' => $brand,
             'brandname' =>  $brandname,
             
+        ]);
+    }
+
+
+     /**
+     * @return Response
+     * @Route("/car/{id}", name="car_detail", methods={"GET"})
+     */
+    public function detail( Car $car, CarRepository $carRepository): Response
+    {
+      
+        $cars = $carRepository->find($car);
+
+        if ( is_null( $cars ))
+        {
+            
+            throw $this->createNotFoundException('The car does not exist');
+        }
+
+        return $this->render('main/cardetail.html.twig', [
+            'cars' => $cars
         ]);
     }
     

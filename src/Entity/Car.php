@@ -34,6 +34,11 @@ class Car
      */
     private $brands;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="cars")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,6 +76,18 @@ class Car
     public function setBrands(?Brand $brands): self
     {
         $this->brands = $brands;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
