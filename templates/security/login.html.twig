@@ -3,6 +3,35 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+  <main> 
+    <section class="first-section"> 
+    <div class="header-spacing" ></div>
+
+<section class="home-hero mb-4 ">
+  <div class="home-hero-inner space-top space-bottom">
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-6">
+          <div class="title">
+            <h1 class="white-text mb-4 p-8" style="font-size: 40px;">
+              The <span class="yellow-text">smart way </span> <br>
+              to sell or to buy your car
+            </h1>
+            
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="home-hero-bottom d-none d-lg-block"></div>
+ 
+</section>
+</section> 
+<section class="login-page space-top space-bottom">
+  <div class="container text-center" width="40px">
+    <div class=" justify-content-start space-small-bottom mb-4 reveal p-1" >
+
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -15,10 +44,10 @@
     {% endif %}
 
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+    <label class="mt-2" for="inputEmail">Email</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control mt-2 " autocomplete="email" required autofocus>
+    <label class="mt-2" for="inputPassword">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control mt-2 " autocomplete="current-password" required>
 
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
@@ -35,8 +64,12 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
+    <button class="btn btn-lg btn-primary mt-5" type="submit">
         Sign in
     </button>
 </form>
+
+  </div>
+  </div>
+</section>
 {% endblock %}

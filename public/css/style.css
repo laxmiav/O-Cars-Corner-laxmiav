@@ -1,0 +1,150 @@
+
+
+.header-spacing{
+      padding: 3em;
+  }
+  .first-section{
+      
+      background:url(get-started-bg.jpg);
+      background-size:cover;
+      box-shadow:inset 0 0 0 2000px rgba(245, 240, 243, 0.3);
+      background-size: 100%;
+      background-repeat: no-repeat;
+      overflow: hidden;
+     padding-bottom: 5em;
+     
+  }
+  .navbar-brand{
+      color:white;
+      font-weight: bolder;
+  }
+  
+  
+  .title{
+  
+      background:rgba(255,255,255,0.5);
+      padding:1em;
+      border-radius: .5em; 
+  }
+  .work{
+      background:rgba(167, 217, 240, 0.5);
+     
+      border-radius: .5em; 
+  }
+  header {
+    color:white;
+    font-weight: bold;
+  }
+  a{
+      color:white;
+      font-weight: bold;
+  }
+  .yellow-text{
+      color: #3140c3;
+  }
+  .activenav{
+      text-decoration:underline;
+      font-weight: bold;
+      font-style: italic;
+      font-size: larger;
+    
+     
+  }
+  section{
+      margin-bottom: 5em;
+  }
+  .home-hero-bottom{
+      margin:2em;
+  }
+  .home-hero{
+      margin-top: 2em;
+  }
+  .brands-d:hover{
+  background-color: #3140c39f;
+  transition: translateY(100%);
+  border-radius: 1em;
+  }
+  .Cars:hover{
+      background-color: #3140c39f;
+      transition: translateY(100%);
+      border-radius: 1em;
+      }
+     
+      .btn{
+          background-color:#3140c3;
+      }
+  
+     .footer {
+          color:white;
+          font-weight: bold;
+          margin: auto;
+        }
+  
+       /******************* cardetail ****************** */
+   
+        .canview{
+  display:none;
+        }
+      /******************* amimations****************** */
+  
+    
+  .reveal {
+    position: relative;
+    opacity: 0;
+  }
+  
+  .reveal.active {
+    opacity: 1;
+  }
+  .active.fade-bottom {
+    animation: fade-bottom 1s ease-in;
+  }
+  .active.fade-left {
+    animation: fade-left 1s ease-in;
+  }
+  .active.fade-right {
+    animation: fade-right 1s ease-in;
+  }
+  @keyframes fade-bottom {
+    0% {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @keyframes fade-left {
+    0% {
+      transform: translateX(-75%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fade-right {
+    0% {
+      transform: translateX(75%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /**************************************************************
+  /**************************************************************/
+  .profile-head {
+      transform: translateY(5rem)
+  }
+  
+  .cover {
+      background-image: url(https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80);
+      background-size: cover;
+      background-repeat: no-repeat
+  }
