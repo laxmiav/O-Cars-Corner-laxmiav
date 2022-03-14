@@ -5,7 +5,7 @@
   }
   .first-section{
       
-      background:url(get-started-bg.jpg);
+      background-image:url(images/get-started-bg.jpg);
       background-size:cover;
       box-shadow:inset 0 0 0 2000px rgba(245, 240, 243, 0.3);
       background-size: 100%;
