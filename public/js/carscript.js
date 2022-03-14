@@ -19,13 +19,16 @@ function reveal() {
   
   
     const details = document.querySelector("#viewdetail");
+
+    
     details.addEventListener("click", detail);
   
     function detail(){
   
       let detailToView = document.querySelector(".canview");
+      console.log(detailToView);
       detailToView.classList.remove("canview");
-  
-    
-  
+      detailToView.classList.add("canview-on");
+      return detailToView;
+     
     }

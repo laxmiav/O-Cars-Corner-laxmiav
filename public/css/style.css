@@ -1,4 +1,6 @@
-
+html {
+  overflow-y: scroll;
+}
 
 .header-spacing{
       padding: 3em;
@@ -85,6 +87,12 @@
         .canview{
   display:none;
         }
+        .canview-on{
+          display:block;
+                }
+
+
+
       /******************* amimations****************** */
   
     
@@ -148,3 +156,28 @@
       background-size: cover;
       background-repeat: no-repeat
   }
+  /*************************/
+  /****Backoffice*********/
+
+
+.header-logo__title {
+    color: #e50914;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0 0.8em 0 0.3em;
+    text-transform: uppercase;
+}
+
+.h-md-300 {
+    height: 300px;
+}
+#widget {
+  border: 2px solid lightgray;
+  padding: 1em;
+  font-weight: bold;
+  text-align: center;
+  color:white;
+  margin-top:6em;
+  background-color:rgba(21, 87, 104, 0.603);
+  margin-left:6em;
+}

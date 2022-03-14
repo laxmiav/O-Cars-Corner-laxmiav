@@ -1,0 +1,50 @@
+ 
+ {% if app.request.get('_route') starts with 'backoffice' %}
+ <div class="container-fluid">
+            <a href="{{ path('backoffice_home') }}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none header-logo">
+                
+                <span class="header-logo__title"> O'Cars-Corner</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.get('_route') starts with 'backoffice_home' %}activenav{% endif %}" href="{{ path('backoffice_home') }}">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link {% if app.request.get('_route') starts with 'car_add' %}activenav{% endif %}" href="{{path('car_add')}}"><i class="bi bi-car"></i> 🚓 Add a car</a>  
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.get('_route') starts with 'brand_' %}activenav{% endif %}" href="{{ path('brand_list') }}"> <i class="bi bi-car"></i>Brands</a>
+                    </li>
+                </ul>
+                    
+                </div>
+{% else %}
+<div class="container-fluid">
+         
+          <a class="navbar-brand" href="{{ path('homepage') }}">O'Cars-Corner</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">@</span>
+          </button>
+          
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link {% if app.request.get('_route') starts with 'homepage' %}activenav{% endif %}" aria-current="page" href="{{ path('homepage') }}">Home</a>
+              <a class="nav-link {% if app.request.get('_route') starts with 'cars_list' %}activenav{% endif %}" href="{{ path('cars_list') }}">Cars</a>
+              <a class="nav-link {% if app.request.get('_route') starts with 'brand_' %}activenav{% endif %}" href="{{ path('brand_list') }}">Brands</a>
+              <a class="nav-link" href="#">Road-Rules</a>
+              
+            </div>
+            
+          </div>
+
+
+
+ {% endif %}

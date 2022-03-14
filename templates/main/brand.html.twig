@@ -4,26 +4,57 @@
 {% block title %}O'cars{% endblock %}
 
 {% block body %}
-<div class="col-3">
 
-                <!-- Code du widget -->
-                <div id="widget">
+                <section class="home-hero mb-4 ">
+      <div class="home-hero-inner space-top space-bottom">
+        <div class="container">
+          <div class="row justify-content-center text-center">
+            <div class="col-lg-6">
+              <div class="title">
+                <h1 class="white-text mb-4 p-8" style="font-size: 40px;">
+                  <span class="yellow-text">Cars in this Brand-"{{ brandname.name }}" </span> <br>
+                  
+                </h1>
                 
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="home-hero-bottom d-none d-lg-block"></div>
+     
+    </section>
+    </section> 
+               <section class="brands-list space-top space-bottom ">
+        <div class="container">
+            
+                <div class="row">
+                    <!-- Cars-->
+                     {% for car in  brand %}  
+                    <div class="Cars col-xl-3 col-lg-4 col-sm-6 m-4  p-5">
+                      <div class="Cars-image">
+                        <a href="detail.html" class="Cars-hover-overlay-link">
+                          <img src="home-left.webp" alt="Cars" class="img-fluid">
+                        </a>
+                      </div>
+                      <div class="Cars-action-buttons">
+                        <a href="#" class="btn btn-outline-dark btn-Cars-left"><i class="fa fa-shopping-cart">to wishlist</i></a>
+                        <a href="{{path('car_detail',{id:car.id})}}" class="btn btn-dark btn-buy"><i class="fa-search fa"></i><span class="btn-buy-label ml-2">Voir</span></a>
+                      </div>
+                      <div class="py-2">
+                        <p class="text-muted text-sm mb-1">Model:{{car.model}}</p>
+                        <h6 class="h6 text-uppercase mb-1"><a href="{{car.brands.id}}" class="text-dark">brand:{{car.brands.name}}</a></h6>
+                        <p class="text-muted text-sm mb-1">Relase-Year:{{car.releaseYear|date('Y')}}</p>
+                      </div>
+                    </div>
+                     {% endfor %}
               
-                <h1>
-                  {{ brandname.name }}
-              </h1>
-              <h2>
-                  Cars in this brand
-                                                      
-              </h2>
-                    {% for car in  brand %}
-                    <li>
-                        {{ car.Model }} ----- Release Year:{{ car.releaseYear|date('Y') }}
-                    </li>
-                {% endfor %}
-               
-                </div>
+     
 
             </div>
-      {% endblock %}
+       </div>
+       </section>
+</main>
+{% endblock %}
+     

@@ -39,7 +39,7 @@
                                 
                                
                                   <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" /></div>
-                                  <button id="viewdetail">View Owner Details</button>
+                                 
                                
                                
                                 
@@ -54,9 +54,7 @@
                                 <p class="message">Suspendisse quos? </p>
                                 <h6 class="price">current price: <span>$180</span></h6>
                                 <div>
-                                   
-                                    <a href="#" class="btn btn-lg btn-outline-dark btn-Cars-left"><i class="fa">Add to wish list</i></a>
-                                </div>
+                               </div>
                                
                                 <div class="Cars-button m-4">
                                 {% if is_granted('CAR_EDIT', cars) %} 
@@ -67,9 +65,9 @@
                                     {% endif %}
                                   </div>
                             </div>
-                            <div  class="canview">
-                           
-                                <h6 class="car-title">Owner Name:</h6>
+                            <div  class="canview" style="display:block;">
+                            
+                                {# <h6 class="car-title">Owner Name:{{cars.user.email}}</h6> #}
                                 <h6 class="car-title">email:</h6>
                                 <h6 class="car-title">Mobile:</h6>
                                

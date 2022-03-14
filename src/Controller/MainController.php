@@ -19,15 +19,29 @@ use App\Form\CarType;
 
 class MainController extends AbstractController
 {
-    /**
+
+/**
      * @Route("/", name="homepage")
+     */
+  
+    public function home(CarRepository $carRepository): Response
+    {
+      
+
+        return $this->render('main/home.html.twig');
+    }
+
+
+
+    /**
+     * @Route("/cars", name="cars_list")
      */
   
     public function list(CarRepository $carRepository): Response
     {
         $cars = $carRepository->findBy([], ['releaseYear' => 'DESC', 'model' => 'ASC']);
 
-        return $this->render('main/home.html.twig', [
+        return $this->render('main/list.html.twig', [
             'cars' => $cars
         ]);
     }

@@ -14,22 +14,7 @@
   <body>
       <header>
         <nav class="navbar fixed-top navbar-expand-lg" style="background-color:#3140c39f; height:5em">
-        <div class="container-fluid">
-         
-          <a class="navbar-brand" href="#">O'Cars-Corner</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon">@</span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link {% if app.request.get('_route') starts with '' %}activenav{% endif %}" aria-current="page" href="#">Home</a>
-              <a class="nav-link {% if app.request.get('_route') starts with 'list' %}activenav{% endif %}" href="#">Cars</a>
-              <a class="nav-link {% if app.request.get('_route') starts with 'brand_' %}activenav{% endif %}" href="{{ path('brand_list') }}">Brands</a>
-              <a class="nav-link" href="#">Road-Rules</a>
-              
-            </div>
-            
-          </div>
+      {% include '_nav.html.twig'%}
           {% if app.user %}
           <ul class="nav justify-content-end">
                
@@ -43,9 +28,11 @@
                   <li><a class="dropdown-item" href="#">Profile</a></li>
                   <li><a class="dropdown-item" href="#">Wish list</a></li>
                   <li><a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a></li>
+                  {% if is_granted('ROLE_ADMIN') == true %} 
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="{{ path('backoffice_home') }}">Backoffice</a></li>
                   <li><a class="dropdown-item" href="#">logout-Backoffice</a></li>
+                   {% endif %}
                 </ul>
               </li>
               {% else %}
@@ -69,6 +56,10 @@
             {% endfor %}
         {% endfor %}
         </div>
+
+         <main> 
+    <section class="first-section" style="background-image:url({{asset('images/get-started-bg.jpg')}});"> 
+    <div class="header-spacing" ></div>
     {% block body %}{% endblock %}
    
 
