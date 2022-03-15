@@ -3,6 +3,31 @@
 {% block title %}Car index{% endblock %}
 
 {% block body %}
+<section class="home-hero mb-4 ">
+      <div class="home-hero-inner space-top space-bottom">
+        <div class="container">
+          <div class="row justify-content-center text-center">
+            <div class="col-lg-6">
+              <div class="title">
+                <h1 class="white-text mb-4 p-8" style="font-size: 40px;">
+                  <span class="yellow-text">List of car's Annonunses</span> <br>
+                  
+                </h1>
+                
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="home-hero-bottom d-none d-lg-block"></div>
+     
+    </section>
+    </section> 
+               <section class="brands-list space-top space-bottom ">
+        <div class="container">
+            
+                <div class="row">
     <h1>Car index</h1>
 
     <table class="table">
@@ -35,8 +60,8 @@
                 <td>{{ car.seats }}</td>
                 <td>{{ car.otherSpec }}</td>
                 <td>
-                    <a href="{{ path('app_backoffice_car_show', {'id': car.id}) }}">show</a>
-                    <a href="{{ path('app_backoffice_car_edit', {'id': car.id}) }}">edit</a>
+                    <a class = "btn" href="{{ path('backoffice_app_car_show', {'id': car.id}) }}">show</a>
+                    <a class = "btn" href="{{ path('backoffice_app_car_edit', {'id': car.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -47,5 +72,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_backoffice_car_new') }}">Create new</a>
+    <a class = "btn"href="{{ path('backoffice_app_car_new') }}">Create new</a>
+    </div>
+       </div>
+       </section>
+</main>
 {% endblock %}

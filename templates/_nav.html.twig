@@ -15,16 +15,19 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a class="nav-link {% if app.request.get('_route') starts with 'backoffice_home' %}activenav{% endif %}" href="{{ path('backoffice_home') }}">Accueil</a>
+                        <a class="nav-link {% if app.request.get('_route') starts with 'backoffice_home' %}activenav{% endif %}" href="{{ path('backoffice_home') }}"> 🚓 Home</a>
                     </li>
                     <li class="nav-item">
-                         <a class="nav-link {% if app.request.get('_route') starts with 'car_add' %}activenav{% endif %}" href="{{path('car_add')}}"><i class="bi bi-car"></i> 🚓 Cars</a>  
+                         <a class="nav-link {% if app.request.get('_route') starts with 'backoffice_app_car_' %}activenav{% endif %}" href="{{path('backoffice_app_car_index')}}"><i class="bi bi-car"></i> 🚓 Cars</a>  
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if app.request.get('_route') starts with 'backoffice_app_brand' %}activenav{% endif %}" href="{{ path('backoffice_app_brand_index') }}"> <i class="bi bi-car"></i>Brands</a>
+                        <a class="nav-link {% if app.request.get('_route') starts with 'backoffice_app_brand' %}activenav{% endif %}" href="{{ path('backoffice_app_brand_index') }}"> <i class="bi bi-car"></i>🚓 Brands</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if app.request.get('_route') starts with 'backoffice_app_user' %}activenav{% endif %}" href="{{ path('backoffice_app_user_index') }}"> <i class="bi bi-car"></i>User</a>
+                        <a class="nav-link {% if app.request.get('_route') starts with 'backoffice_app_user' %}activenav{% endif %}" href="{{ path('backoffice_app_user_index') }}"> <i class="bi bi-car"></i>🚓 User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.get('_route') starts with 'backoffice_app_lesson' %}activenav{% endif %}" href="{{ path('backoffice_app_lesson_index') }}"> <i class="bi bi-car"></i>🚓 Lesson</a>
                     </li>
                 </ul>
                     
@@ -39,10 +42,10 @@
           
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link {% if app.request.get('_route') starts with 'homepage' %}activenav{% endif %}" aria-current="page" href="{{ path('homepage') }}">Home</a>
+              <a class="nav-link {% if app.request.get('_route') starts with 'homepage' %}activenav{% endif %}" aria-current="page" href="{{ path('homepage') }}">🚓 Home</a>
               <a class="nav-link {% if app.request.get('_route') starts with 'cars_list' %}activenav{% endif %}" href="{{ path('cars_list') }}"> 🚓 Cars</a>
-              <a class="nav-link {% if app.request.get('_route') starts with 'brand_' %}activenav{% endif %}" href="{{ path('brand_list') }}">Brands</a>
-              <a class="nav-link" href="#">Road-Rules</a>
+              <a class="nav-link {% if app.request.get('_route') starts with 'brand_' %}activenav{% endif %}" href="{{ path('brand_list') }}">🚓 Brands</a>
+              <a class="nav-link" href="#"> 🚓 Road-Rules</a>
               
             </div>
             

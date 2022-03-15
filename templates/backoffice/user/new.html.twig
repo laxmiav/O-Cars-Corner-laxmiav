@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Car{% endblock %}
+{% block title %}New User{% endblock %}
 
 {% block body %}
 <section class="home-hero mb-4 ">
@@ -10,7 +10,7 @@
             <div class="col-lg-6">
               <div class="title">
                 <h1 class="white-text mb-4 p-8" style="font-size: 40px;">
-                  <span class="yellow-text">List of car's Annonunses</span> <br>
+                  <span class="yellow-text">Add-User</span> <br>
                   
                 </h1>
                 
@@ -28,13 +28,11 @@
         <div class="container">
             
                 <div class="row">
-    <h1>Edit Car</h1>
+    <h1>Create new User</h1>
 
-    {{ include('backoffice/car/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('user/_form.html.twig') }}
 
-    <a class="btn" href="{{ path('backoffice_app_car_index') }}">back to list</a>
-
-    {{ include('backoffice/car/_delete_form.html.twig') }}
+    <a class="btn" href="{{ path('backoffice_app_user_index') }}">back to list</a>
     </div>
        </div>
        </section>

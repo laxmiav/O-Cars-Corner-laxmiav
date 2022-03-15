@@ -194,6 +194,27 @@ class MainController extends AbstractController
             'cars' => $cars
         ]);
     }
+      /**
+     * @return Response
+     * @Route("/profile", name="profile", methods={"GET"})
+     */
+    public function profile( ): Response
+    {
+      
+        // $cars = $carRepository->find($car);
+
+        // if ( is_null( $cars ))
+        // {
+            
+        //     throw $this->createNotFoundException('The car does not exist');
+        // }
+
+        return $this->render('profile.html.twig', [
+           
+        ]);
+    }
+
+    
     
 
 }

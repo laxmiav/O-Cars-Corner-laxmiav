@@ -3,6 +3,31 @@
 {% block title %}Lesson{% endblock %}
 
 {% block body %}
+<section class="home-hero mb-4 ">
+      <div class="home-hero-inner space-top space-bottom">
+        <div class="container">
+          <div class="row justify-content-center text-center">
+            <div class="col-lg-6">
+              <div class="title">
+                <h1 class="white-text mb-4 p-8" style="font-size: 40px;">
+                  <span class="yellow-text">Lesson</span> <br>
+                  
+                </h1>
+                
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="home-hero-bottom d-none d-lg-block"></div>
+     
+    </section>
+    </section> 
+               <section class="brands-list space-top space-bottom ">
+        <div class="container">
+            
+                <div class="row">
     <h1>Lesson</h1>
 
     <table class="table">
@@ -22,9 +47,13 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_backoffice_lesson_index') }}">back to list</a>
+    <a class="btn" href="{{ path('backoffice_app_lesson_index') }}">back to list</a>
 
-    <a href="{{ path('app_backoffice_lesson_edit', {'id': lesson.id}) }}">edit</a>
+    <a class="btn" href="{{ path('backoffice_app_lesson_edit', {'id': lesson.id}) }}">edit</a>
 
     {{ include('backoffice/lesson/_delete_form.html.twig') }}
+     </div>
+       </div>
+       </section>
+</main>
 {% endblock %}

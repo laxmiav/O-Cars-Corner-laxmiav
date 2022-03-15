@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class LessonController extends AbstractController
 {
     /**
-     * @Route("/", name="app_backoffice_lesson_index", methods={"GET"})
+     * @Route("/", name="backoffice_app_lesson_index", methods={"GET"})
      */
     public function index(LessonRepository $lessonRepository): Response
     {
@@ -26,7 +26,7 @@ class LessonController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_backoffice_lesson_new", methods={"GET", "POST"})
+     * @Route("/new", name="backoffice_app_lesson_new", methods={"GET", "POST"})
      */
     public function new(Request $request, LessonRepository $lessonRepository): Response
     {
@@ -36,7 +36,7 @@ class LessonController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $lessonRepository->add($lesson);
-            return $this->redirectToRoute('app_backoffice_lesson_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('backoffice_app_lesson_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('backoffice/lesson/new.html.twig', [
@@ -46,7 +46,7 @@ class LessonController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_lesson_show", methods={"GET"})
+     * @Route("/{id}", name="backoffice_app_lesson_show", methods={"GET"})
      */
     public function show(Lesson $lesson): Response
     {
@@ -56,7 +56,7 @@ class LessonController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_backoffice_lesson_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="backoffice_app_lesson_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
     {
@@ -65,7 +65,7 @@ class LessonController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $lessonRepository->add($lesson);
-            return $this->redirectToRoute('app_backoffice_lesson_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('backoffice_app_lesson_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('backoffice/lesson/edit.html.twig', [
@@ -75,7 +75,7 @@ class LessonController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_backoffice_lesson_delete", methods={"POST"})
+     * @Route("/{id}", name="backoffice_app_lesson_delete", methods={"POST"})
      */
     public function delete(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
     {
@@ -83,6 +83,6 @@ class LessonController extends AbstractController
             $lessonRepository->remove($lesson);
         }
 
-        return $this->redirectToRoute('app_backoffice_lesson_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('backoffice_app_lesson_index', [], Response::HTTP_SEE_OTHER);
     }
 }

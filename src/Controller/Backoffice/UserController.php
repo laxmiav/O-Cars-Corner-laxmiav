@@ -22,7 +22,7 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
-        return $this->render('user/index.html.twig', [
+        return $this->render('backoffice/user/index.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
     }
@@ -49,7 +49,7 @@ class UserController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('backoffice_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('backoffice_app_user_index', [], Response::HTTP_SEE_OTHER);
 
 
 
@@ -82,7 +82,7 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->add($user);
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('backoffice_app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('backoffice/user/edit.html.twig', [
@@ -100,6 +100,6 @@ class UserController extends AbstractController
             $userRepository->remove($user);
         }
 
-        return $this->redirectToRoute('backoffice/app_user_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('backoffice_app_user_index', [], Response::HTTP_SEE_OTHER);
     }
 }

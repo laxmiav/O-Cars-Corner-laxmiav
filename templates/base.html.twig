@@ -15,6 +15,8 @@
       <header>
         <nav class="navbar fixed-top navbar-expand-lg" style="background-color:#3140c39f; height:5em">
       {% include '_nav.html.twig'%}
+
+
           {% if app.user %}
           <ul class="nav justify-content-end">
                
@@ -25,7 +27,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">My account</a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="{{ path('profile') }}">Profile</a></li>
                   <li><a class="dropdown-item" href="#">Wish list</a></li>
                   <li><a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a></li>
                   {% if is_granted('ROLE_ADMIN') == true %} 

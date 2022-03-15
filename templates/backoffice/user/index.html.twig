@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lesson index{% endblock %}
+{% block title %}User index{% endblock %}
 
 {% block body %}
 <section class="home-hero mb-4 ">
@@ -10,7 +10,7 @@
             <div class="col-lg-6">
               <div class="title">
                 <h1 class="white-text mb-4 p-8" style="font-size: 40px;">
-                  <span class="yellow-text">Car</span> <br>
+                  <span class="yellow-text">User-List</span> <br>
                   
                 </h1>
                 
@@ -28,37 +28,41 @@
         <div class="container">
             
                 <div class="row">
-    <h1>Lesson index</h1>
+    <h1>User index</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Password</th>
+                <th>FullName</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for lesson in lessons %}
+        {% for user in users %}
             <tr>
-                <td>{{ lesson.id }}</td>
-                <td>{{ lesson.title }}</td>
-                <td>{{ lesson.content }}</td>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.fullName }}</td>
                 <td>
-                    <a class="btn"href="{{ path('backoffice_app_lesson_show', {'id': lesson.id}) }}">show</a>
-                    <a class="btn"href="{{ path('backoffice_app_lesson_edit', {'id': lesson.id}) }}">edit</a>
+                    <a class="btn" href="{{ path('backoffice_app_user_show', {'id': user.id}) }}">show</a>
+                    <a class="btn" href="{{ path('backoffice_app_user_edit', {'id': user.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a class="btn" href="{{ path('backoffice_app_lesson_new') }}">Create new</a>
+    <a class="btn" href="{{ path('backoffice_app_user_new') }}">Create new</a>
      </div>
        </div>
        </section>

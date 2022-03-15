@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lesson index{% endblock %}
+{% block title %}User{% endblock %}
 
 {% block body %}
 <section class="home-hero mb-4 ">
@@ -10,7 +10,7 @@
             <div class="col-lg-6">
               <div class="title">
                 <h1 class="white-text mb-4 p-8" style="font-size: 40px;">
-                  <span class="yellow-text">Car</span> <br>
+                  <span class="yellow-text">User-{{ user.email }}</span> <br>
                   
                 </h1>
                 
@@ -28,38 +28,39 @@
         <div class="container">
             
                 <div class="row">
-    <h1>Lesson index</h1>
+    <h1>User</h1>
 
     <table class="table">
-        <thead>
+        <tbody>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>actions</th>
+                <td>{{ user.id }}</td>
             </tr>
-        </thead>
-        <tbody>
-        {% for lesson in lessons %}
             <tr>
-                <td>{{ lesson.id }}</td>
-                <td>{{ lesson.title }}</td>
-                <td>{{ lesson.content }}</td>
-                <td>
-                    <a class="btn"href="{{ path('backoffice_app_lesson_show', {'id': lesson.id}) }}">show</a>
-                    <a class="btn"href="{{ path('backoffice_app_lesson_edit', {'id': lesson.id}) }}">edit</a>
-                </td>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
             </tr>
-        {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <th>Roles</th>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
             </tr>
-        {% endfor %}
+            <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th>FullName</th>
+                <td>{{ user.fullName }}</td>
+            </tr>
         </tbody>
     </table>
 
-    <a class="btn" href="{{ path('backoffice_app_lesson_new') }}">Create new</a>
-     </div>
+    <a class="btn" href="{{ path('backoffice_app_user_index') }}">back to list</a>
+
+    <a class="btn" href="{{ path('backoffice_app_user_edit', {'id': user.id}) }}">edit</a>
+
+    {{ include('user/_delete_form.html.twig') }}
+    </div>
        </div>
        </section>
 </main>
