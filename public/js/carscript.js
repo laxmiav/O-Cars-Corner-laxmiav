@@ -27,8 +27,8 @@ function reveal() {
   
       let detailToView = document.querySelector(".canview");
       console.log(detailToView);
-      detailToView.classList.remove("canview");
-      detailToView.classList.add("canview-on");
+      detailToView.classList.toggle("canview-on");
+      
       return detailToView;
      
     }
