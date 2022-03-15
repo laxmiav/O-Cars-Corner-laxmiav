@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Car index{% endblock %}
+
+{% block body %}
+    <h1>Car index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Model</th>
+                <th>ReleaseYear</th>
+                <th>Slug</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>FuelType</th>
+                <th>Image</th>
+                <th>Seats</th>
+                <th>OtherSpec</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for car in cars %}
+            <tr>
+                <td>{{ car.id }}</td>
+                <td>{{ car.model }}</td>
+                <td>{{ car.releaseYear ? car.releaseYear|date('Y-m-d') : '' }}</td>
+                <td>{{ car.slug }}</td>
+                <td>{{ car.type }}</td>
+                <td>{{ car.price }}</td>
+                <td>{{ car.fuelType }}</td>
+                <td>{{ car.image }}</td>
+                <td>{{ car.seats }}</td>
+                <td>{{ car.otherSpec }}</td>
+                <td>
+                    <a href="{{ path('app_backoffice_car_show', {'id': car.id}) }}">show</a>
+                    <a href="{{ path('app_backoffice_car_edit', {'id': car.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_backoffice_car_new') }}">Create new</a>
+{% endblock %}

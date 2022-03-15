@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Brand{% endblock %}
+
+{% block body %}
+ <section class="home-hero mb-4 ">
+      <div class="home-hero-inner space-top space-bottom">
+        <div class="container">
+          <div class="row justify-content-center text-center">
+            <div class="col-lg-6">
+              <div class="title">
+                <h1 class="white-text mb-4 p-8" style="font-size: 40px;">
+                  <span class="yellow-text">Create new Brand</span> <br>
+                  
+                </h1>
+                
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="home-hero-bottom d-none d-lg-block"></div>
+     
+    </section>
+    </section> 
+               <section class="brands-list space-top space-bottom ">
+        <div class="container">
+            
+                <div class="row">
+    <h1></h1>
+
+    {{ include('backoffice/brand/_form.html.twig') }}
+
+    <a class="btn" href="{{ path('backoffice_app_brand_index') }}">back to list</a>
+     </div>
+       </div>
+       </section>
+</main>
+{% endblock %}

@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Entity\brand;
 use App\Form\CarType;
+use App\Service\Myslugger;
 
 class MainController extends AbstractController
 {
@@ -52,7 +53,7 @@ class MainController extends AbstractController
      * @Route("/car/add", name="car_add", methods={"GET", "POST"})
      */
   
-    public function add(Request $request, ManagerRegistry $doctrine): Response
+    public function add(Request $request, ManagerRegistry $doctrine,Myslugger $slugger): Response
     {
         $cars = new Car();
         $form = $this->createForm(CarType::class, $cars);
@@ -64,6 +65,7 @@ class MainController extends AbstractController
             $cars->setUser($this->getUser());
 
             $entityManager = $doctrine->getManager();
+            $cars->setSlug($slugger->slugify($cars->getModel()));
             $entityManager->persist($cars);
            
             $this->addFlash('success', 'Thanks for registering your car with us');

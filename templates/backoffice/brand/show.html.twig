@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Brand{% endblock %}
+
+{% block body %}
+  <section class="home-hero mb-4 ">
+      <div class="home-hero-inner space-top space-bottom">
+        <div class="container">
+          <div class="row justify-content-center text-center">
+            <div class="col-lg-6">
+              <div class="title">
+                <h1 class="white-text mb-4 p-8" style="font-size: 40px;">
+                  <span class="yellow-text">Brands</span> <br>
+                  
+                </h1>
+                
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="home-hero-bottom d-none d-lg-block"></div>
+     
+    </section>
+    </section> 
+               <section class="brands-list space-top space-bottom ">
+        <div class="container">
+            
+                <div class="row">
+  
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ brand.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ brand.name }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ brand.image }}</td>
+            </tr>
+        </tbody>
+
+        <tr>
+  <td>  <a   class= "btn" href="{{ path('backoffice_app_brand_index') }}">back to list</a></td>
+
+  <td>  <a  class= "btn" href="{{ path('backoffice_app_brand_edit', {'id': brand.id}) }}">edit</a></td>
+</tr>
+    </table>
+
+    {{ include('backoffice/brand/_delete_form.html.twig') }}
+
+            </div>
+       </div>
+       </section>
+</main>
+{% endblock %}
