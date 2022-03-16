@@ -246,6 +246,19 @@ class MainController extends AbstractController
            
         ]);
     }
+     /**
+     * @return Response
+     * @Route("/lessons", name="lessons", methods={"GET"})
+     */
+    public function lessons( ): Response
+    {
+      
+        
+
+        return $this->render('lessons.html.twig', [
+           
+        ]);
+    }
 
     
     

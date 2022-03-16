@@ -12,7 +12,7 @@
             <div class="col-lg-6">
               <div class="title">
                 <h1 class="white-text mb-4 p-8" style="font-size: 40px;">
-                  <span class="yellow-text">Cars-Announces </span> <br>
+                  <span class="yellow-text">My Wishlist </span> <br>
                   
                 </h1>
                 
@@ -35,20 +35,15 @@
             
                 <div class="row">
                     <!-- Cars-->
-                     {% for car in cars %}  
+                     {% for car in app.session.get('mywishlist') %}  
                     <div class="Cars col-xl-3 col-lg-4 col-sm-6 m-4  p-5">
-                      {% if app.session.get('mywishlist')[car.id] is defined %}
-    
-                            <span>@@@</span>
-                          
-                          {% endif %}
                       <div class="Cars-image">
                         <a href="detail.html" class="Cars-hover-overlay-link">
                           <img src="home-left.webp" alt="Cars" class="img-fluid">
                         </a>
                       </div>
                       <div class="Cars-action-buttons">
-                        <a href="{{ path('wishlist_manager', {id: car.id}) }}" class="btn btn-outline-dark btn-Cars-left"><i class="fa fa-shopping-cart">to wishlist</i></a>
+                        <a href="{{ path('wishlist_manager', {id: car.id}) }}" class="btn btn-outline-dark btn-Cars-left"><i class="fa fa-shopping-cart">Remove from wishlist</i></a>
                         <a href="{{path('car_detail',{id:car.id})}}" class="btn btn-dark btn-buy"><i class="fa-search fa"></i><span class="btn-buy-label ml-2">Voir</span></a>
                       </div>
                       <div class="py-2">
@@ -60,7 +55,9 @@
                      {% endfor %}
                     <!-- /Cars-->
                      
-                   
+                    <div class="col">
+        <a href="{{ path('wishlist_purge') }}" class="btn btn-danger btn-sm" onclick="return confirm('Vider votre liste de favoris ?');">Please empty my list</a>
+    </div>
             
                  
             
@@ -72,4 +69,5 @@
        </section>
 </main>
 {% endblock %}
+
 

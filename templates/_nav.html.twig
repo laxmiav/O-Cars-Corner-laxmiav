@@ -45,7 +45,7 @@
               <a class="nav-link {% if app.request.get('_route') starts with 'homepage' %}activenav{% endif %}" aria-current="page" href="{{ path('homepage') }}">🚓 Home</a>
               <a class="nav-link {% if app.request.get('_route') starts with 'cars_list' %}activenav{% endif %}" href="{{ path('cars_list') }}"> 🚓 Cars</a>
               <a class="nav-link {% if app.request.get('_route') starts with 'brand_' %}activenav{% endif %}" href="{{ path('brand_list') }}">🚓 Brands</a>
-              <a class="nav-link" href="#"> 🚓 Road-Rules</a>
+              <a class="nav-link{% if app.request.get('_route') starts with 'lessons' %}activenav{% endif %}" href="{{path('lessons')}}"> 🚓 Road-Rules</a>
               
             </div>
             
