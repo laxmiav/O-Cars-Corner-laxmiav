@@ -40,13 +40,16 @@
 <div class="container m-3">
   <div class="row">
     <div class="col-md-4">
-     <img width="70%" src="compare-.jpg" alt="compare">
+     <img width="70%" src="{{asset('images/compare-.jpg')}}" alt="compare">
+    <h6>Compare</h6>
     </div>
     <div class="col-md-4">
-      <img width="50%" src="contact.webp" alt="contact">
+      <img width="50%" src="{{asset('images/contact.webp')}}" alt="contact">
+      <h6>Contact</h6>
     </div>
     <div class="col-md-4">
-      <img width="80%" src="collet.jpg" alt="collect">
+      <img width="80%" src="{{asset('images/collet.jpg')}}" alt="collect">
+      <h6>Collect</h6>
     </div>
   </div>
 </div>
@@ -67,7 +70,7 @@
               <h3>You want to <span class="yellow-text" >Sell</span>  a car</h3>
               <p>Create your account and Then Register your car details to show your offer!</p>
               <div class="m-3" >
-                <a class="btn btn-primary btn-lg " style="background-color:#3140c3;" href="#" role="button">Sell your Cars</a>
+                <a class="btn btn-primary btn-lg " style="background-color:#3140c3;" href="{{path('car_add')}}" role="button">Sell your Cars</a>
               </div>
             
         </div>
@@ -83,7 +86,7 @@
                 buy!
               </p>
               <div class="m-3">
-              <a class="btn btn-primary btn-lg"  style="background-color:#3140c3;" href="#" role="button">Visit your Cars</a>
+              <a class="btn btn-primary btn-lg"  style="background-color:#3140c3;" href="{{path('car_add')}}" role="button">Visit your Cars</a>
             </div>
             </div>
           </div>
@@ -98,7 +101,7 @@
     <div class="road col-md-5 mx-2 p-5 reveal fade-left" >
       <div class="work-content">
 
-       <img  width="80%" src="illustration-vectorielle-trafic-fine-concept-abstrait-infraction-au-ccode2.jpg" alt="">
+       <img  width="80%" src="{{asset('images/illustration-vectorielle-trafic-fine-concept-abstrait-infraction-au-ccode2.jpg')}}" alt="">
         
       </div>
     </div>

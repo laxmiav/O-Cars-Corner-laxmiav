@@ -17,6 +17,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Entity\brand;
 use App\Form\CarType;
 use App\Service\Myslugger;
+use Symfony\Component\Form\Extension\Core\Type\FileType; 
 
 class MainController extends AbstractController
 {
@@ -66,6 +67,16 @@ class MainController extends AbstractController
 
             $entityManager = $doctrine->getManager();
             $cars->setSlug($slugger->slugify($cars->getModel()));
+
+            // $file = $cars->getImage(); 
+            // $fileName = md5(uniqid()).'.'.$file->guessExtension(); 
+            // $file->move($this->getParameter('photos_directory'), $fileName); 
+            // $cars->setImage($fileName); 
+            // return new Response("User photo is successfully uploaded."); 
+
+
+
+
             $entityManager->persist($cars);
            
             $this->addFlash('success', 'Thanks for registering your car with us');
