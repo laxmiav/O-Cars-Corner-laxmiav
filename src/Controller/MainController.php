@@ -17,6 +17,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Entity\brand;
 use App\Form\CarType;
 use App\Service\Myslugger;
+use DateTime;
+use Ferrandini\Urlizer;
 use Symfony\Component\Form\Extension\Core\Type\FileType; 
 
 class MainController extends AbstractController
@@ -60,21 +62,25 @@ class MainController extends AbstractController
         $form = $this->createForm(CarType::class, $cars);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
-
+         $createdat = new DateTime();
+         $cars->setCreatedAt($createdat);
             // On associe le user connecté à la question
             $cars->setUser($this->getUser());
 
             $entityManager = $doctrine->getManager();
             $cars->setSlug($slugger->slugify($cars->getModel()));
 
-            // $file = $cars->getImage(); 
-            // $fileName = md5(uniqid()).'.'.$file->guessExtension(); 
-            // $file->move($this->getParameter('photos_directory'), $fileName); 
-            // $cars->setImage($fileName); 
-            // return new Response("User photo is successfully uploaded."); 
-
-
+            $uploadedFile = $form['imageFile']->getData();
+            if ($uploadedFile) {
+                $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
+                $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
+                $uploadedFile->move(
+                    $destination,
+                    $newFilename
+                );
+                $cars->setImage($newFilename);
+            }
 
 
             $entityManager->persist($cars);
@@ -97,7 +103,7 @@ class MainController extends AbstractController
     * @Route("/car/edit/{id}", name="cars_edit")
     */
   
-    public function edit(Car $cars,Request $request, ManagerRegistry $doctrine): Response
+    public function edit(Car $cars,Request $request, ManagerRegistry $doctrine,Myslugger $slugger): Response
     {
         $this->denyAccessUnlessGranted('CAR_EDIT', $cars);
         $form = $this->createForm(CarType::class, $cars);
@@ -105,11 +111,27 @@ class MainController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
-        {
-
+        {   
+            $createdat = new DateTime();
+            $cars->setUpdatedAt($createdat);
 
                 // On associe le user connecté à la question
                 $cars->setUser($this->getUser());
+                $entityManager = $doctrine->getManager();
+                $cars->setSlug($slugger->slugify($cars->getModel()));
+
+
+                $uploadedFile = $form['imageFile']->getData();
+                if ($uploadedFile) {
+                    $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
+                    $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
+                    $uploadedFile->move(
+                        $destination,
+                        $newFilename
+                    );
+                    $cars->setImage($newFilename);
+                }
 
             $entityManager = $doctrine->getManager();
 

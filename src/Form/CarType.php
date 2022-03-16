@@ -16,6 +16,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\ImageValidator;
 
 class CarType extends AbstractType
 {
@@ -65,8 +67,15 @@ class CarType extends AbstractType
                 // On veut un "widget HTML" par choix => checkboxes car multiple=true
                 'expanded' => true,
             ])
-            ->add('image',UrlType::class, [
-                'help' => 'URL de l\'image',
+            ->add('imageFile',FileType::class, [
+                
+                'mapped'=>false,
+                'required' => false,
+                'constraints' => [
+                    new ImageValidator([
+                        'maxSize' => '5M'
+                    ])
+                ]
             ])
             ->add('seats',NumberType::class)
             ->add('otherSpec',TextareaType::class,[

@@ -31,28 +31,21 @@
 
     <section class="Car-detail space-top space-bottom ">
         <div class="container">
-            <div class="container">
-                <div class="card">
-                    <div class="container-fliud">
                         <div class="wrapper row">
-                            <div class="preview col-md-6">
-                                
+                            <div class="preview col-md-5">
                                
-                                  <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" /></div>
-                                  <button id="viewdetail">View Owner Details</button>
-                               
-                               
-                                
+                                  <div class="tab-pane active" id="pic-1"><img src="{{ asset('/uploads/'~ cars.image) }}" alt="{{cars.model}}" /></div>
+                                  <button class="btn" id="viewdetail">View Owner Details</button>
                             </div>
                             <div class="details col-md-6">
                                 <h6 class="car-title">Model:{{cars.model}}</h6>
                                 <h6 class="car-title">Release-Year:{{cars.releaseYear|date('Y')}}</h6>
-                                <h6 class="car-title">Type:</h6>
+                                <h6 class="car-title">Type:{{cars.type}}</h6>
                                 <h6 class="car-title">Brand:{{cars.brands.name}}</h6>
-                                <h6 class="car-title">Seats:6</h6>
+                                <h6 class="car-title">Seats:{{cars.seats}}</h6>
                                 <h6 class="car-title">Message:</h6>
                                 <p class="message">Suspendisse quos? </p>
-                                <h6 class="price">current price: <span>$180</span></h6>
+                                <h6 class="price">current price: <span>{{cars.price}}</span></h6>
                                 <div>
                                    
                                     <a href="#" class="btn btn-lg btn-outline-dark btn-Cars-left"><i class="fa">Add to wish list</i></a>
@@ -74,9 +67,7 @@
                                 <h6 class="car-title">Mobile:</h6>
                                
                             </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
        </div>
        </section>

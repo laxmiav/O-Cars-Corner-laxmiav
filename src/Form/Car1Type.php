@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Car;
+use App\Entity\Brand;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Validator\Constraints\ImageValidator;
 
 class Car1Type extends AbstractType
 {
@@ -36,7 +38,7 @@ class Car1Type extends AbstractType
        'multiple' => false,
         'choice_value' => 'id'
         ])
-        ->add('type',ChoiceType::class, [
+        ->add('type', ChoiceType::class, [
             'label' => 'Type',
             'choices' => [
                 'Manual' => 'Manual',
@@ -50,7 +52,7 @@ class Car1Type extends AbstractType
             'expanded' => true,
         ])
         ->add('price')
-        ->add('fuelType',ChoiceType::class, [
+        ->add('fuelType', ChoiceType::class, [
             'label' => 'Type',
             'choices' => [
                 'Petrol' => 'Petrol',
@@ -64,11 +66,21 @@ class Car1Type extends AbstractType
             // On veut un "widget HTML" par choix => checkboxes car multiple=true
             'expanded' => true,
         ])
-        ->add('image',UrlType::class, [
-            'help' => 'URL de l\'image',
+
+    
+
+        ->add('imageFile', FileType::class, [
+                
+            'mapped'=>false,
+            'required' => false,
+            'constraints' => [
+                new ImageValidator([
+                    'maxSize' => '5M'
+                ])
+            ]
         ])
-        ->add('seats',NumberType::class)
-        ->add('otherSpec',TextareaType::class,[
+        ->add('seats', NumberType::class)
+        ->add('otherSpec', TextareaType::class, [
             'label' => 'Any other Specifications',
             ])
             

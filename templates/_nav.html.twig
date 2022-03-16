@@ -2,7 +2,7 @@
  {% if app.request.get('_route') starts with 'backoffice' %}
  <div class="container-fluid">
             <a href="{{ path('backoffice_home') }}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none header-logo">
-                
+                 <img src="{{ asset('images/car-logo.png') }}"  width="100" alt="Logo O'car">
                 <span class="header-logo__title"> O'Cars-Corner</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -34,7 +34,7 @@
                 </div>
 {% else %}
 <div class="container-fluid">
-         
+          <img src="{{ asset('images/car-logo.png') }}"  width="100" alt="Logo O'car">
           <a class="navbar-brand" href="{{ path('homepage') }}">O'Cars-Corner</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon">@</span>
