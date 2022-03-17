@@ -17,6 +17,7 @@
   .navbar-brand{
       color:white;
       font-weight: bolder;
+      
   }
   
   
@@ -37,14 +38,14 @@
   }
   a{
       color:white;
-      font-weight: bold;
+      /* font-weight: bold; */
   }
   .yellow-text{
       color: #3140c3;
   }
   .activenav{
       text-decoration:underline;
-      font-weight: bold;
+      /* font-weight: bold; */
       font-style: italic;
       font-size: larger;
     
@@ -71,7 +72,7 @@
       }
      
       .btn{
-          background-color:#3140c3;
+          background-color:#fff;
       }
   
      .footer {

@@ -3,16 +3,25 @@
 namespace App\Controller\Backoffice;
 
 use App\Entity\Car;
-use App\Form\Car1Type;
-use App\Repository\CarRepository;
+use App\Form\CarType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+use App\Entity\User;
+use App\Repository\CarRepository;
+use App\Repository\BrandRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use App\Entity\brand;
 
 use App\Service\Myslugger;
-
+use DateTime;
+use Ferrandini\Urlizer;
+use Symfony\Component\Form\Extension\Core\Type\FileType; 
 /**
  * @Route("/backoffice/car")
  */
@@ -34,22 +43,36 @@ class CarController extends AbstractController
     public function new(Request $request, CarRepository $carRepository, ManagerRegistry $doctrine, Myslugger $slugger): Response
     {
         $cars = new Car();
-        $form = $this->createForm(Car1Type::class, $cars);
+        $form = $this->createForm(CarType::class, $cars);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            // $carRepository->add($car);
+         $createdat = new DateTime();
+         $cars->setCreatedAt($createdat);
             // On associe le user connecté à la question
             $cars->setUser($this->getUser());
 
             $entityManager = $doctrine->getManager();
             $cars->setSlug($slugger->slugify($cars->getModel()));
-            $entityManager->persist($cars);
 
-            $this->addFlash('success', 'New car registered well!');
+            $uploadedFile = $form['imageFile']->getData();
+            if ($uploadedFile) {
+                $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
+                $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
+                $uploadedFile->move(
+                    $destination,
+                    $newFilename
+                );
+                $cars->setImage($newFilename);
+            }
+
+
+            $entityManager->persist($cars);
+           
+            $this->addFlash('success', 'Thanks for registering your car with us');
             // dire à doctrine d'exécuter les requêtes
             $entityManager->flush();
-
+            
 
 
 
@@ -76,18 +99,47 @@ class CarController extends AbstractController
     /**
      * @Route("/{id}/edit", name="backoffice_app_car_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Car $car, CarRepository $carRepository): Response
+    public function edit(Request $request, Car $cars, CarRepository $carRepository,ManagerRegistry $doctrine, Myslugger $slugger): Response
     {
-        $form = $this->createForm(Car1Type::class, $car);
+        $form = $this->createForm(CarType::class, $cars);
+
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $carRepository->add($car);
+        if ($form->isSubmitted() && $form->isValid())
+        {   
+            $createdat = new DateTime();
+            $cars->setUpdatedAt($createdat);
+
+                // On associe le user connecté à la question
+                $cars->setUser($this->getUser());
+                $entityManager = $doctrine->getManager();
+                $cars->setSlug($slugger->slugify($cars->getModel()));
+
+
+                $uploadedFile = $form['imageFile']->getData();
+                if ($uploadedFile) {
+                    $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
+                    $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
+                    $uploadedFile->move(
+                        $destination,
+                        $newFilename
+                    );
+                    $cars->setImage($newFilename);
+                }
+
+            $entityManager = $doctrine->getManager();
+
+            $this->addFlash('success', 'Your modification are well registered');
+            $entityManager->flush();
+
+
+
             return $this->redirectToRoute('backoffice_app_car_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('backoffice/car/edit.html.twig', [
-            'car' => $car,
+            'car' => $cars,
             'form' => $form,
         ]);
     }

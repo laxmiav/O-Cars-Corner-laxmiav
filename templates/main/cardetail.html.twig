@@ -38,6 +38,11 @@
                                   <button class="btn" id="viewdetail">View Owner Details</button>
                             </div>
                             <div class="details col-md-6">
+                            {% if app.session.get('mywishlist')[car.id] is defined %}
+    
+                            <span><i class="bi bi-award-fill"><h1> 🚓</h1> </i></span>
+                          
+                          {% endif %}
                                 <h6 class="car-title">Model:{{cars.model}}</h6>
                                 <h6 class="car-title">Release-Year:{{cars.releaseYear|date('Y')}}</h6>
                                 <h6 class="car-title">Type:{{cars.type}}</h6>

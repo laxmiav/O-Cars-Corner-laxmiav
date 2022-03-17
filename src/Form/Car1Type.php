@@ -17,6 +17,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Validator\Constraints\ImageValidator;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 
 class Car1Type extends AbstractType
 {
@@ -73,11 +75,7 @@ class Car1Type extends AbstractType
                 
             'mapped'=>false,
             'required' => false,
-            'constraints' => [
-                new ImageValidator([
-                    'maxSize' => '5M'
-                ])
-            ]
+            
         ])
         ->add('seats', NumberType::class)
         ->add('otherSpec', TextareaType::class, [

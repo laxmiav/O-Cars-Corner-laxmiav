@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class UserType extends AbstractType
@@ -22,11 +23,12 @@ class UserType extends AbstractType
     {
         $builder
         ->add('email',EmailType::class)
+        ->add('fullName',TextType::class)
         ->add('roles', ChoiceType::class, [
             'choices' => [
-                'Administrateur' => ["ROLE_ADMIN"],
-                'Modérateur' => ["ROLE_MODERATOR"],
-                'Utilisateur' => ["ROLE_USER"],
+                'Administrateur' => "ROLE_ADMIN",
+                'Modérateur' => "ROLE_MODERATOR",
+                'Utilisateur' => '',
             ],
             'multiple' => true,
             'expanded' => true,

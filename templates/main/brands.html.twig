@@ -32,7 +32,7 @@
           <div class="brands-d col-md-2 mx-2 p-5" >
 
             <div class="brands">
-                <img src="Audi.png" alt="{{brand.name }}">
+                <img src="{{ asset('/uploads/'~ brand.image) }}" alt="{{brand.name }}">
                  <a class="nav-link " href="{{ path('brand_detail',{id : brand.id}) }}"> {{brand.name }}</a>
             </div>
             </div>

@@ -39,21 +39,21 @@
                     <div class="Cars col-xl-3 col-lg-4 col-sm-6 m-4  p-5">
                       {% if app.session.get('mywishlist')[car.id] is defined %}
     
-                            <span>@@@</span>
+                            <span><i class="bi bi-award-fill"><h1> 🚓</h1> </i></span>
                           
                           {% endif %}
                       <div class="Cars-image">
                         <a href="detail.html" class="Cars-hover-overlay-link">
-                          <img src="home-left.webp" alt="Cars" class="img-fluid">
+                          <img src="{{ asset('/uploads/'~ car.image) }}" alt="Cars" class="img-fluid">
                         </a>
                       </div>
                       <div class="Cars-action-buttons">
-                        <a href="{{ path('wishlist_manager', {id: car.id}) }}" class="btn btn-outline-dark btn-Cars-left"><i class="fa fa-shopping-cart">to wishlist</i></a>
-                        <a href="{{path('car_detail',{id:car.id})}}" class="btn btn-dark btn-buy"><i class="fa-search fa"></i><span class="btn-buy-label ml-2">Voir</span></a>
+                        <a href="{{ path('wishlist_manager', {id: car.id}) }}" class="btn btn-outline-dark btn-Cars-left">to wishlist</a>
+                        <a href="{{path('car_detail',{id:car.id})}}" class="btn btn-dark btn-buy"><span class="btn-buy-label ml-2">Voir</span></a>
                       </div>
                       <div class="py-2">
                         <p class="text-muted text-sm mb-1">Model:{{car.model}}</p>
-                        <h6 class="h6 text-uppercase mb-1"><a href="{{car.brands.id}}" class="text-dark">brand:{{car.brands.name}}</a></h6>
+                        <h6 class="h6 text-uppercase mb-1"><a href="{{ path('brand_detail',{id:car.brands.id})}}" class="text-dark">brand:{{car.brands.name}}</a></h6>
                         <p class="text-muted text-sm mb-1">Relase-Year:{{car.releaseYear|date('Y')}}</p>
                       </div>
                     </div>
