@@ -34,18 +34,20 @@
                     <div class="bg-white shadow rounded overflow-hidden">
                         <div class="px-4 pt-0 pb-4 cover">
                             <div class="media align-items-center profile-head">
-                                <div class="profile mr-3"><img src="http://placekitten.com/400/252" alt="..." width="130" class="rounded mb-2 img-thumbnail"><a href="#" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a></div>
+                                <div class="profile mr-3"><img src="http://placekitten.com/400/252" alt="..." width="130" class="rounded mb-2 img-thumbnail"></div>
                                 
                             </div>
                         </div>
-                       
+                         {% if app.user %}
                         <div class="px-4 py-3">
                             <h5 class="mb-0">About</h5>
                             <div class="p-4 rounded shadow-sm bg-light">
-                                <p class="font-italic mb-0">Name:</p>
-                                <p class="font-italic mb-0">Member From:</p>
-                                <p class="font-italic mb-0">Role:</p>
-    
+                                <p class="font-italic mb-0">Name:{{ app.user.fullName }}</p>
+                                <p class="font-italic mb-0">Email:{{ app.user.username }}</p>
+                                {% for role in  app.user.roles %}
+                                <p class="font-italic mb-0">Role:{{  role }}</p>
+                                {% endfor %}
+     {% endif %}
                             </div>
                         </div>
                        
